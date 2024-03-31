@@ -19,7 +19,13 @@ app.use(
 );
 
 //routes
+const authRoutes = require("./routes/user");
+const bookRoutes = require("./routes/book");
+const transactionRoutes = require("./routes/Transaction");
 
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/book", bookRoutes);
+app.use("/api/v1/transaction", transactionRoutes);
 //connect to db
 const connectDB = require("./config/db");
 connectDB();

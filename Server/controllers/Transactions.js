@@ -1,5 +1,5 @@
 const Transactions = require("../models/Transactions");
-const Users = require("../models/Users");
+const Users = require("../models/User");
 const Book = require("../models/Books");
 
 exports.borrowBook = async (req, res) => {
@@ -38,8 +38,8 @@ exports.borrowBook = async (req, res) => {
 
     //check if the user has already borrowed the book
     const borrowedBook = await Transactions.findOne({
-      user: userId,
       book: bookId,
+      userId: userId,
     });
     if (borrowedBook) {
       return res.status(400).json({
@@ -50,7 +50,7 @@ exports.borrowBook = async (req, res) => {
 
     //borrow the book
     const transaction = new Transactions({
-      user: userId,
+      userId: userId,
       book: bookId,
     });
     await transaction.save();
@@ -58,8 +58,10 @@ exports.borrowBook = async (req, res) => {
     //update the book
     const updatedBook = await Book.findByIdAndUpdate(
       bookId,
-      (issued = issued + 1),
-      { new: true }
+      { $inc: { issued: 1 } },
+      {
+        new: true,
+      }
     );
     if (updatedBook.issued === updatedBook.copies) {
       updatedBook.availability = false;
@@ -70,7 +72,7 @@ exports.borrowBook = async (req, res) => {
       message: "Book borrowed successfully",
     });
   } catch (err) {
-    console.log("Error borrowing the book : ", err.message);
+    console.log("Error borrowing the book : ", err);
     return res.status(500).json({
       success: false,
       message: "Internal Server Error",
@@ -107,7 +109,7 @@ exports.returnBook = async (req, res) => {
 
     //check if the user has borrowed the book
     const borrowedBook = await Transactions.findOne({
-      user: userId,
+      userId: userId,
       book: bookId,
     });
     if (!borrowedBook) {
@@ -127,7 +129,7 @@ exports.returnBook = async (req, res) => {
     //update the book
     const updatedBook = await Book.findByIdAndUpdate(
       bookId,
-      (issued = issued - 1),
+      { $inc: { issued: -1 } },
       { new: true }
     );
     if (updatedBook.issued < updatedBook.copies) {
