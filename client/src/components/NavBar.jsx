@@ -2,6 +2,8 @@ import React from "react";
 import { FaHome, FaUser } from "react-icons/fa";
 import { IoLibrary } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { MdOutlineAddCircle } from "react-icons/md";
+import { FaClipboardList } from "react-icons/fa";
 
 const NavBar = () => {
   return (
@@ -21,6 +23,12 @@ const NavBar = () => {
           <button className="hover:text-blue-600">
             <FaUser />
           </button>
+        </Link>
+        <Link to={"/addBook"}>
+          <MdOutlineAddCircle />
+        </Link>
+        <Link to={"/allBooks"}>
+          <FaClipboardList />
         </Link>
       </div>
     </div>

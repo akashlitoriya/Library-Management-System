@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { login } from "../../service/Auth Operations/authOpeation";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,14 +16,11 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const [passwordShown, setPasswordShown] = useState(false);
-  const handleFormSubmit = (data) => {
-    const formData = new FormData();
-    formData.append("email", data.email);
-    formData.append("password", data.password);
 
-    console.log(data);
+  const handleFormSubmit = (data) => {
+    console.log("Login data : ", data);
     //eslint-disable-next-line
-    const result = loginOperation(formData, navigate, dispatch);
+    dispatch(login(data, navigate));
     reset();
   };
   return (
@@ -35,16 +33,15 @@ const Login = () => {
           className="flex flex-col gap-6"
         >
           <input
-            className="px-5 py-2 border-2 border-yellow-400 rounded-full w-[20rem] "
+            className="px-5 py-2 border-2 border-yellow-400 rounded-full w-[20rem] text-black "
             type="email"
             placeholder="Email"
             required={true}
             {...register("email", { required: true })}
           />
-          {errors.email && <p className="text-red-500">Email is required</p>}
           <div className="relative">
             <input
-              className="px-5 py-2 border-2 border-yellow-400 rounded-full w-[20rem]"
+              className="px-5 py-2 border-2 border-yellow-400 rounded-full w-[20rem] text-black"
               type={passwordShown ? "text" : "password"}
               placeholder="Password"
               required={true}
@@ -71,7 +68,7 @@ const Login = () => {
         <p className="text-base">
           Don’t have an Account?
           <br />
-          <Link>
+          <Link to={"/signup"}>
             <span className="text-richYellow cursor-pointer">
               Create Account
             </span>

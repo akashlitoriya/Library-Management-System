@@ -5,6 +5,8 @@ export const endpoints = {
   signup: `${baseURL}/auth/signup`,
   addBook: `${baseURL}/book/addBook`,
   getAvailableBooks: `${baseURL}/book/getAvailableBooks`,
-  borrowBook: `${baseURL}/book/borrow`,
-  returnBook: `${baseURL}/book/return`,
+  borrowBook: `${baseURL}/transaction/borrow`,
+  returnBook: `${baseURL}/transaction/return`,
+  getBooks: `${baseURL}/book/getBooks`,
+  getIssuedBooks: `${baseURL}/book/getIssuedBooks`,
 };

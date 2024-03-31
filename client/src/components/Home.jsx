@@ -31,7 +31,10 @@ const Home = () => {
           thought-provoking <br />
           non-fiction, our library is your gateway to endless adventures.
         </p>
-        <button className="bg-richYellow hover:bg-yellow-400 text-richBlue-100 font-saira text-xl w-fit font-bold p-2 px-5 rounded-lg">
+        <button
+          onClick={() => nav("/login")}
+          className="bg-richYellow hover:bg-yellow-400 text-richBlue-100 font-saira text-xl w-fit font-bold p-2 px-5 rounded-lg"
+        >
           Start Borrowing!!
         </button>
       </div>

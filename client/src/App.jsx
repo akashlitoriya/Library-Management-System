@@ -1,15 +1,18 @@
 import { useState } from "react";
 import BookCatalogPage from "./components/BookCatalogPage";
 import "./App.css";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/Home";
-import NavBar from "./components/NavBar";
 import userSlice from "./slices/userSlice";
 import RouterComp from "./components/RouterComp";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import Profile from "./components/Profile";
 import Login from "./components/authComp/Login";
+import { Toaster } from "react-hot-toast";
+import SignUp from "./components/authComp/SignUp";
+import AddBooks from "./components/AdminComp/AddBooks";
+import AllBooks from "./components/AdminComp/AllBooks";
 
 function App() {
   const store = configureStore({
@@ -25,6 +28,7 @@ function App() {
           <RouterComp />
         </RouterProvider>
       </div>
+      <Toaster />
     </Provider>
   );
 }
@@ -43,6 +47,18 @@ const appRouter = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "signup",
+        element: <SignUp />,
+      },
+      {
+        path: "addBook",
+        element: <AddBooks />,
+      },
+      {
+        path: "allBooks",
+        element: <AllBooks />,
       },
     ],
   },

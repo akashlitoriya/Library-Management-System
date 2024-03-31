@@ -19,6 +19,22 @@ exports.getAvailableBooks = async (req, res) => {
     });
   }
 };
+exports.getBooks = async (req, res) => {
+  try {
+    const books = await Book.find({});
+    return res.status(200).json({
+      success: true,
+      message: "List of available books",
+      data: books,
+    });
+  } catch (err) {
+    console.log("Error in getAvailableBooks: ", err);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
 
 exports.getBorrowersOfBook = async (req, res) => {
   try {
@@ -98,6 +114,28 @@ exports.addBook = async (req, res) => {
   } catch (err) {
     console.log("Error in addBook: ", err);
     res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
+exports.getIssuedBooks = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    if (!userId)
+      return res
+        .status(400)
+        .json({ success: false, message: "Please provide user id" });
+    const books = await Transaction.find({ userId: userId }).populate("book");
+    return res.status(200).json({
+      success: true,
+      message: "List of issued books",
+      data: books,
+    });
+  } catch (err) {
+    console.log("Error in getIssuedBooks: ", err);
+    return res.status(500).json({
       success: false,
       message: "Internal Server Error",
     });

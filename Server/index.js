@@ -6,11 +6,17 @@ const app = express();
 //import middlewares
 const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
-
+const cors = require("cors");
 //middlewares
 dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+
 app.use(
   fileUpload({
     useTempFiles: true,

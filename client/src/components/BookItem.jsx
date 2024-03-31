@@ -1,18 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { borrowBook } from "../service/Auth Operations/BookOperations";
 
 function BookItem({ book }) {
+  const { user } = useSelector((state) => state.user);
+  const { token } = useSelector((state) => state.user);
+
+  console.log("Book ITEM : ", book);
+  async function borrow(bookId) {
+    const response = await borrowBook(bookId, user._id, token);
+    console.log("BORROW BOOK RESPONSE : ", response);
+  }
+
   return (
-    <div className="book-item">
-      <h2>{book.title}</h2>
-      <p>
+    <div className="book-item border-richYellow border-2 text-white font-saira w-fit max-w-[14rem] px-4 py-2">
+      <img src={book.bookImage} className="w-[8rem] " />
+      <h2 className="font-bold text-base">{book.title}</h2>
+      <p className="text-sm">
         <strong>Author:</strong> {book.author}
       </p>
-      <p>
+      <p className="text-sm">
         <strong>Genre:</strong> {book.genre}
       </p>
       {/* Add more book details as needed */}
-      <button className="borrow-btn">Borrow</button> {/* For borrowers */}
-      <button className="manage-btn">Manage</button> {/* For librarians */}
+      <button
+        onClick={() => borrow(book._id)}
+        className="bg-richYellow mt-2 hover:bg-yellow-400 text-richBlue-100 font-saira text-base font-bold p-1 px-4 rounded-full w-fit"
+      >
+        Borrow
+      </button>{" "}
+      {/* For borrowers */}
     </div>
   );
 }
