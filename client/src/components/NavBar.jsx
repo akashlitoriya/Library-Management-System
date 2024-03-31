@@ -1,6 +1,7 @@
 import React from "react";
 import { FaHome, FaUser } from "react-icons/fa";
 import { IoLibrary } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -9,9 +10,11 @@ const NavBar = () => {
         <button className="hover:text-blue-600">
           <FaHome />
         </button>
+        {/* <Link to="/books"> */}
         <button className="hover:text-blue-600">
           <IoLibrary />
         </button>
+        {/* </Link> */}
         <button className="hover:text-blue-600">
           <FaUser />
         </button>

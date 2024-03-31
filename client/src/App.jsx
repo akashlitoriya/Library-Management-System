@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BookCatalogPage from "./components/BookCatalogPage";
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/Home";
@@ -21,6 +22,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/books",
+    element: <BookCatalogPage />,
   },
 ]);
 

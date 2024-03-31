@@ -3,7 +3,7 @@ import book from "../assets/BookIcon.png";
 
 const Home = () => {
   return (
-    <div className="py-10 relative w-full">
+    <div className="py-10 relative min-w-[90vw]">
       <button className="bg-richYellow hover:bg-yellow-400 text-richBlue-100 font-saira text-xl w-fit font-bold p-2 px-7 rounded-lg absolute right-5">
         Login
       </button>
