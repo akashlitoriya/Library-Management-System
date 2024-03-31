@@ -36,7 +36,7 @@ exports.signup = async (req, res) => {
 
     const saltRoundes = process.env.BCRYPT_SALT_ROUNDS || 10;
 
-    const hashedPassword = await bcrypt.hash(password, saltRoundes);
+    const hashedPassword = await bcrypt.hash(password, 10);
     const userEntry = await User.create({
       username,
       email,

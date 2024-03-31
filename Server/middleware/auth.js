@@ -43,7 +43,7 @@ exports.auth = async (req, res, next) => {
 //authorize
 exports.isBorrower = async (req, res, next) => {
   try {
-    if (req.user.accountType !== "Borrower") {
+    if (req.user.role !== "Borrower") {
       return res.status(401).json({
         success: false,
         message: "This is a protected route for borrowers only",
@@ -60,7 +60,7 @@ exports.isBorrower = async (req, res, next) => {
 
 exports.isLibrarian = async (req, res, next) => {
   try {
-    if (req.user.accountType !== "Librarian") {
+    if (req.user.role !== "Librarian") {
       return res.status(401).json({
         success: false,
         message: "This is a protected route for Librarian only",
