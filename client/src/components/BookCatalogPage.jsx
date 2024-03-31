@@ -8,18 +8,18 @@ function BookCatalogPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [booksPerPage] = useState(10); // Adjust as needed
 
-  useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        const response = await axios.get("/api/books"); //api call
-        setBooks(response.data);
-      } catch (error) {
-        console.error("Error fetching books:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchBooks = async () => {
+  //     try {
+  //       const response = await axios.get("/api/books"); //api call
+  //       setBooks(response.data);
+  //     } catch (error) {
+  //       console.error("Error fetching books:", error);
+  //     }
+  //   };
 
-    fetchBooks();
-  }, []);
+  //   fetchBooks();
+  // }, []);
 
   // Get current books
   const indexOfLastBook = currentPage * booksPerPage;
@@ -38,9 +38,8 @@ function BookCatalogPage() {
         {/* Filter options dropdowns or checkboxes */}
       </div>
       <div className="book-list">
-        {currentBooks.map((book) => (
-          <BookItem key={book.id} book={book} />
-        ))}
+        {currentBooks.length > 0 &&
+          currentBooks.map((book) => <BookItem key={book.id} book={book} />)}
       </div>
       <Pagination
         booksPerPage={booksPerPage}

@@ -10,11 +10,11 @@ const NavBar = () => {
         <button className="hover:text-blue-600">
           <FaHome />
         </button>
-        {/* <Link to="/books"> */}
-        <button className="hover:text-blue-600">
+
+        <Link to={"/books"} className="hover:text-blue-600">
           <IoLibrary />
-        </button>
-        {/* </Link> */}
+        </Link>
+
         <button className="hover:text-blue-600">
           <FaUser />
         </button>

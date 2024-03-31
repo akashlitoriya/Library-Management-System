@@ -1,19 +1,19 @@
 import { useState } from "react";
 import BookCatalogPage from "./components/BookCatalogPage";
 import "./App.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
+import RouterComp from "./components/RouterComp";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <div className="bg-richBlue-100 flex flex-row px-10 h-screen">
-      <NavBar />
-      <div className="App">
-        <RouterProvider router={appRouter} />
-      </div>
+      <RouterProvider router={appRouter}>
+        <RouterComp />
+      </RouterProvider>
     </div>
   );
 }
@@ -21,11 +21,11 @@ function App() {
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/books",
-    element: <BookCatalogPage />,
+    element: <RouterComp />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "books", element: <BookCatalogPage /> },
+    ],
   },
 ]);
 
