@@ -9,6 +9,7 @@ import RouterComp from "./components/RouterComp";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import Profile from "./components/Profile";
+import Login from "./components/authComp/Login";
 
 function App() {
   const store = configureStore({
@@ -38,6 +39,10 @@ const appRouter = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+      },
+      {
+        path: "login",
+        element: <Login />,
       },
     ],
   },

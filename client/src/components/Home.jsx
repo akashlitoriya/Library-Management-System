@@ -1,10 +1,15 @@
 import React from "react";
 import book from "../assets/BookIcon.png";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const nav = useNavigate();
   return (
     <div className="py-10 relative min-w-[90vw]">
-      <button className="bg-richYellow hover:bg-yellow-400 text-richBlue-100 font-saira text-xl w-fit font-bold p-2 px-7 rounded-lg absolute right-5">
+      <button
+        onClick={() => nav("/login")}
+        className="bg-richYellow hover:bg-yellow-400 text-richBlue-100 font-saira text-xl w-fit font-bold p-2 px-7 rounded-lg absolute right-5"
+      >
         Login
       </button>
       <div className="ml-20 px-16 py-28 text-white flex flex-col gap-6">
