@@ -5,8 +5,6 @@ import { getBooks } from "../service/Auth Operations/BookOperations";
 
 function BookCatalogPage() {
   const [books, setBooks] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [booksPerPage] = useState(10); // Adjust as needed
 
   useEffect(() => {
     fetchBooks();
@@ -17,23 +15,15 @@ function BookCatalogPage() {
     setBooks(response.data);
   }
 
-  // Get current books
-  const indexOfLastBook = currentPage * booksPerPage;
-  const indexOfFirstBook = indexOfLastBook - booksPerPage;
-  const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
-
-  // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
   return (
-    <div className="md:px-8 md:py-6 px-4 py-2 w-[92vw] h-screen">
+    <div className="md:pl-8 md:py-6 pl-4 py-2 w-[94vw] h-screen overflow-y-scroll">
       <h1 className="text-3xl text-white font-orbitron font-bold">
         Discover Your Next Read: Explore Our Book Catalog
       </h1>
 
-      <div className="book-list md:mt-10 mt-6 overflow-y-scroll flex flex-wrap gap-3">
-        {currentBooks.length > 0 &&
-          currentBooks.map((book) => <BookItem key={book._id} book={book} />)}
+      <div className="book-list md:mt-10 mt-6 flex flex-wrap gap-3">
+        {books.length > 0 &&
+          books.map((book) => <BookItem key={book._id} book={book} />)}
       </div>
     </div>
   );

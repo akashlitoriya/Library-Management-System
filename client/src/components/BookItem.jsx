@@ -13,13 +13,13 @@ function BookItem({ book }) {
   }
 
   return (
-    <div className="book-item border-richYellow border-2 text-white font-saira w-fit max-w-[14rem] px-4 py-2">
+    <div className="book-item border-richYellow border-2 text-white font-saira w-[12rem] px-4 py-2 flex flex-col justify-center items-center">
       <img src={book.bookImage} className="w-[8rem] " />
-      <h2 className="font-bold text-base">{book.title}</h2>
-      <p className="text-sm">
+      <h2 className="font-bold text-base text-center">{book.title}</h2>
+      <p className="text-sm line-clamp-1 text-center">
         <strong>Author:</strong> {book.author}
       </p>
-      <p className="text-sm">
+      <p className="text-sm text-center">
         <strong>Genre:</strong> {book.genre}
       </p>
       {/* Add more book details as needed */}

@@ -13,20 +13,20 @@ const Profile = () => {
     getBooks();
   }, []);
   async function getBooks() {
-    const books = await getIssuedBooks(user._id, token);
+    const books = await getIssuedBooks(user?._id, token);
     setBookData(books);
   }
   async function handleReturn(bookId) {
     console.log("RETURNING BOOK : ", bookId);
-    const response = await returnBook(bookId, user._id, token);
+    const response = await returnBook(bookId, user?._id, token);
     console.log("RETURN BOOK RESPONSE : ", response);
     getBooks();
   }
   console.log("BOOK DATA : ", bookData);
   return (
     <div className="p-28 text-white font-saira w-[92vw]">
-      <div className="text-4xl font-semibold">{user.username}</div>
-      <h2 className="text-3xl font-semibold">{user.email}</h2>
+      <div className="text-4xl font-semibold">{user?.username}</div>
+      <h2 className="text-3xl font-semibold">{user?.email}</h2>
       <table className="table-auto mt-3">
         <thead className="text-richYellow">
           <tr>
@@ -40,19 +40,19 @@ const Profile = () => {
           {bookData.length >= 1 &&
             bookData.map((book) => {
               return (
-                <tr key={book._id}>
+                <tr key={book?._id}>
                   <td className="border border-white px-4 py-2">
-                    {book.book.title}
+                    {book?.book?.title}
                   </td>
                   <td className="border border-white px-4 py-2">
-                    {book.book.author}
+                    {book?.book?.author}
                   </td>
                   <td className="border border-white px-4 py-2">
-                    {book.borrowedDate?.substring(0, 10)}
+                    {book?.borrowedDate?.substring(0, 10)}
                   </td>
                   <td className="border border-white px-4 py-2">
                     <button
-                      onClick={() => handleReturn(book.book?._id)}
+                      onClick={() => handleReturn(book?.book?._id)}
                       className="border-2 border-richYellow px-3 py-1 hover:bg-richYellow hover:text-richBlue-100"
                     >
                       Return

@@ -12,7 +12,7 @@ const AllBooks = () => {
     setBookList(response.data);
   }
   return (
-    <div className="ml-16 pt-16">
+    <div className="ml-16 pt-16 w-[90vw] p-8 h-screen overflow-x-hidden overflow-y-scroll">
       <h1 className="text-3xl text-white font-orbitron font-bold">All Books</h1>
       <table className="table-auto mt-3">
         <thead className="text-richYellow">
