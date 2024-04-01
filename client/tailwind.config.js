@@ -14,11 +14,6 @@ export default {
         richPink: {
           100: "#B84B68",
         },
-        richViolet: {
-          800: "#2B0C34",
-          100: "#A546C6",
-          600: "#310E3C",
-        },
         richBlue: {
           100: "#385F98",
         },
